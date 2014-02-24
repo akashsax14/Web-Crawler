@@ -2,20 +2,25 @@ Web_Crawler
 ===========
 
 ------------------------------------------------------------------------
+
 ReadMe for Web Crawler
+
 ------------------------------------------------------------------------
 Files Included : 
 python.py : The main program for the crawler
 explain.txt : Text file containing information regarding the working of 
 the crawler
+
 ------------------------------------------------------------------------
 Libraries : urllib, lxml, heapq, json, math, sys, threading, robotparser
 for lxml use : pip install lxml
+
 ------------------------------------------------------------------------
 To Execute :
 Just run the crawler.py python file. 
 No need to create any other file separately. 
 Extracted links will be saved in links.txt file in same directory.
+
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 1) Program Structure
@@ -28,6 +33,7 @@ class Crawler:
 
 def main():
 def getgoogle(query):
+
 ------------------------------------------------------------------------
 2) Input Data
 
@@ -35,6 +41,7 @@ Query : Word/words to be searched
 Page Limit Number : Number of pages that are to be retireved 
 
 Debug Mode : Prints out the exception messages
+
 ------------------------------------------------------------------------
 3) Execution
 
@@ -76,10 +83,12 @@ debug_mode.
 Also, since there are multiple threads running, we used thread locks
 while writing data onto the file since we don't want more than one 
 thread writing onto the file. 
+
 ------------------------------------------------------------------------
 4) Output Data
 
 All the relevant links are saved in a file name links.txt in the same 
 directory. The program also calculates the approximate amount of data 
-that was downloaded and what percent of it was relevant. 
+that was downloaded and what percent of it was relevant.
+
 ------------------------------------------------------------------------
