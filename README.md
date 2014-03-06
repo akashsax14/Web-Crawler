@@ -1,27 +1,12 @@
 Web_Crawler
 ===========
 
-------------------------------------------------------------------------
+A Web crawler is an Internet bot that systematically browses the World Wide Web, typically for the purpose of Web indexing. A Web crawler may also be called a Web spider, an ant, an automatic indexer, or a Web scutter. Web search engines and some other sites use Web crawling or spidering software to update their web content or indexes of others sites' web content. Web crawlers can copy all the pages they visit for later processing by a search engine that indexes the downloaded pages so that users can search them much more quickly.
 
-ReadMe for Web Crawler
+This web crawler is a focused crawler which takes in a query from the user. It then get the top ten google search results and starts crawling those urls simultaneously using multithreading. For every page that is getting crawled, word occurance count is maintained and all the links are expracted from the page. These extracted links are then recursively crawled based on page relevance (ie. if query string is present on the page). A max Priority Queue is maintained to store the pages (word count as priority) for any future use for page ranking. 
 
-------------------------------------------------------------------------
-Files Included : 
-python.py : The main program for the crawler
-explain.txt : Text file containing information regarding the working of 
-the crawler
+All the relevant links that are extracted are saved in a file "links.txt". The accuracy of crawler is calculated along with the total quantity of data that was downloaded in Mb's. 
 
-------------------------------------------------------------------------
-Libraries : urllib, lxml, heapq, json, math, sys, threading, robotparser
-for lxml use : pip install lxml
-
-------------------------------------------------------------------------
-To Execute :
-Just run the crawler.py python file. 
-No need to create any other file separately. 
-Extracted links will be saved in links.txt file in same directory.
-
-------------------------------------------------------------------------
 ------------------------------------------------------------------------
 1) Program Structure
 
@@ -51,9 +36,9 @@ Step 3> run  -> crawl
 Step 4> crawl-> crawl
 
 Step 1>	Execution begins at the main() method which prompts the user 
-	    for query input and for number of pages to be found.The query 
-	    is then passed to getgoogle() method which returns the top 10 
-	    search results for the given query.
+	for query input and for number of pages to be found.The query 
+	is then passed to getgoogle() method which returns the top 10 
+	search results for the given query.
 
 Step 2>	The main() method then iterates over each url returned by 
     	getgoogle() and creates a thread object Crawler for each url.
@@ -90,5 +75,18 @@ thread writing onto the file.
 All the relevant links are saved in a file name links.txt in the same 
 directory. The program also calculates the approximate amount of data 
 that was downloaded and what percent of it was relevant.
+
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+Libraries Used : 
+urllib, lxml, heapq, json, math, sys, threading, robotparser
+
+Required library installation : 
+for lxml use : pip install lxml
+
+To Execute :
+Run the crawler.py python file. 
+No need to create any other file separately. 
+Extracted links will be saved in links.txt file in same directory.
 
 ------------------------------------------------------------------------
