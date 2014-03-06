@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Web crawler by akashsax14</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/akashsax14/Web_Crawler">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/akashsax14/Web_Crawler/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/akashsax14/Web_Crawler/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Web crawler</h1>
+          <p>A primitive focused web crawler in python</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/akashsax14">akashsax14</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="web_crawler" class="anchor" href="#web_crawler"><span class="octicon octicon-link"></span></a>Web_Crawler</h1>
+
+<p>A Web crawler is an Internet bot that systematically browses the World Wide Web, typically for the purpose of Web indexing. A Web crawler may also be called a Web spider, an ant, an automatic indexer, or a Web scutter. Web search engines and some other sites use Web crawling or spidering software to update their web content or indexes of others sites' web content. Web crawlers can copy all the pages they visit for later processing by a search engine that indexes the downloaded pages so that users can search them much more quickly.</p>
+
+<p>This web crawler is a focused crawler which takes in a query from the user. It then get the top ten google search results and starts crawling those urls simultaneously using multithreading. For every page that is getting crawled, word occurance count is maintained and all the links are expracted from the page. These extracted links are then recursively crawled based on page relevance (ie. if query string is present on the page). A max Priority Queue is maintained to store the pages (word count as priority) for any future use for page ranking. </p>
+
+<p>All the relevant links that are extracted are saved in a file "links.txt". The accuracy of crawler is calculated along with the total quantity of data that was downloaded in Mb's. </p>
+
+<hr><p>1) Program Structure</p>
+
+<p>class Crawler:
+    def <strong>init</strong>(self, thread_id, url, query, file, lock):
+    def pagevisited(self, url):
+    def crawl(self, url):
+    def run(self):</p>
+
+<p>def main():
+def getgoogle(query):</p>
+
+<hr><p>2) Input Data</p>
+
+<p>Query : Word/words to be searched
+Page Limit Number : Number of pages that are to be retireved </p>
+
+<p>Debug Mode : Prints out the exception messages</p>
+
+<hr><p>3) Execution</p>
+
+<p>Step 1&gt; main -&gt; getgoogle
+Step 2&gt; main -&gt; Crawler.start (x10) -&gt; run
+Step 3&gt; run  -&gt; crawl
+Step 4&gt; crawl-&gt; crawl</p>
+
+<p>Step 1&gt; Execution begins at the main() method which prompts the user 
+    for query input and for number of pages to be found.The query 
+    is then passed to getgoogle() method which returns the top 10 
+    search results for the given query.</p>
+
+<p>Step 2&gt; The main() method then iterates over each url returned by 
+        getgoogle() and creates a thread object Crawler for each url.
+        Each thread is started and the run() method is invoked for 
+        every instance of thread.</p>
+
+<p>Step 3&gt; The run() method then parses the url passed to it and extracts
+        all links on the page. It then iterates over all the extracted
+        links and calls the crawl() method for crawling each url.</p>
+
+<p>Step 4&gt; The crawl() method parses the url passed to it. It checks if
+        the link has already been visited or not. It then checks the
+        robots.txt file of the host url and checks if the current url
+        can be accessed. Then the word count is calculated and the 
+        url is pushed into the priority queue along with the word count
+        as page priority. ALso the crawl() method checks if the url
+        if an anchor jump link. Once the page information is written
+        onto the file links.txt, all the links on the current page 
+        are extracted. Iterating over these links, each link is
+        passed to crawl() method as a recursive call. </p>
+
+<p>The program execution continues till the specified number of pages have 
+been found or till the crawler has crawler all the relevant links. Any 
+exception that is thrown is ignored unless the program is running in 
+debug_mode. </p>
+
+<p>Also, since there are multiple threads running, we used thread locks
+while writing data onto the file since we don't want more than one 
+thread writing onto the file. </p>
+
+<hr><p>4) Output Data</p>
+
+<p>All the relevant links are saved in a file name links.txt in the same 
+directory. The program also calculates the approximate amount of data 
+that was downloaded and what percent of it was relevant.</p>
+
+<hr><hr><p>Libraries Used : 
+urllib, lxml, heapq, json, math, sys, threading, robotparser</p>
+
+<p>Required library installation : 
+for lxml use : pip install lxml</p>
+
+<p>To Execute :
+Run the crawler.py python file. 
+No need to create any other file separately. 
+Extracted links will be saved in links.txt file in same directory.</p>
+
+<hr>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
